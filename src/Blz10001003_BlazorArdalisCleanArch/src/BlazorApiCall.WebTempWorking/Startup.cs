@@ -1,14 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.DependencyInjection;
-using Ardalis.ListStartupServices;
-using System.Collections.Generic;
+﻿using Ardalis.ListStartupServices;
 using Autofac;
+using Microsoft.OpenApi.Models;
 
 namespace BlazorApiCall.WebTempWorking
 {
@@ -24,7 +16,6 @@ namespace BlazorApiCall.WebTempWorking
 
     public IConfiguration Configuration { get; }
 
-    // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
 
@@ -71,13 +62,6 @@ namespace BlazorApiCall.WebTempWorking
           .SetIsOriginAllowed(origin => true)
           .AllowCredentials()
       );
-
-      //if (env.IsDevelopment())
-      //{
-      //  app.UseDeveloperExceptionPage();
-      //  app.UseSwagger();
-      //  app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ch20Ex01 v1"));
-      //}
 
       if (_env.IsDevelopment())
       {
