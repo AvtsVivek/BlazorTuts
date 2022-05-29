@@ -31,7 +31,8 @@ public partial class GetApiCall
     // forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("http://localhost:57678/AzureDns/3");
     try
     {
-      var temp = "http://localhost:57678/AzureDns/3"; // http://localhost:57678/swagger/index.html
+      // var temp = "http://localhost:57678/AzureDns/3"; // http://localhost:57678/swagger/index.html
+      var temp = "https://localhost:57680/AzureDns/3"; 
       //var temp = "http://localhost:8830/infoendpoint";
       //var re = await Http.GetAsync(temp);
 
