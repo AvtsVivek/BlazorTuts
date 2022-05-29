@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Ardalis.ListStartupServices;
 using System.Collections.Generic;
+using Autofac;
 
 namespace BlazorApiCall.WebTempWorking
 {
@@ -53,6 +54,12 @@ namespace BlazorApiCall.WebTempWorking
         config.Path = "/listservices";
       });
 
+    }
+
+    public virtual void ConfigureContainer(ContainerBuilder builder)
+    {
+      // builder.RegisterModule(new DefaultCoreModule());
+      // builder.RegisterModule(new DefaultInfrastructureModule(_env.EnvironmentName == "Development"));
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

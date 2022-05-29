@@ -46,7 +46,8 @@ public partial class GetApiCall
       };
       var response = await Http.SendAsync(requestMessage);
 
-      var result = await Http.GetAndDeserialize<GetAzureDnsByPageSizeResponse>(temp);
+      var result = await Http.GetAsync(temp);
+      var result1 = await Http.GetAndDeserialize<GetAzureDnsByPageSizeResponse>(temp);
       // var response = await Http.GetFromJsonAsync<GetAzureDnsByPageSizeResponse>("http://localhost:57678/AzureDns/3");
       // recordSets = response!.Records;
     }
@@ -61,6 +62,8 @@ public partial class GetApiCall
 
   private async Task PostRequest()
   {
+    var temp = "https://localhost:53049/AzureDns/3";
+    // var temp = "https://localhost:53049/api/HandOfCards/";
     // https://localhost:53049/api/HandOfCards
     //           new Uri("https://localhost:44348/api/HandOfCards/"
     Player player = new Player() { PlayerName="Vivek" };
@@ -68,17 +71,18 @@ public partial class GetApiCall
     {
       var requestMessage = new HttpRequestMessage()
       {
-        Method = new HttpMethod("POST"),
-        RequestUri =
-          new Uri("https://localhost:53049/api/HandOfCards/"
-             + player.PlayerName),
-        Content =
-          JsonContent.Create(new Player
-          {
-            PlayerName = $"{player.PlayerName}"
-          })
+        Method = new HttpMethod("GET"),
+        // RequestUri = new Uri(temp + player.PlayerName),
+        RequestUri = new Uri(temp ),
+        //Content =
+        //  JsonContent.Create(new Player
+        //  {
+        //    PlayerName = $"{player.PlayerName}"
+        //  })
       };
       var response = await Http.SendAsync(requestMessage);
+      var result = await Http.GetAsync(temp);
+      var responseBody = await response.Content.ReadAsStringAsync();
       var playerName = $"{player.PlayerName}, here are your cards.";
       Stream stream = await response.Content.ReadAsStreamAsync();
       StreamReader reader = new StreamReader(stream);

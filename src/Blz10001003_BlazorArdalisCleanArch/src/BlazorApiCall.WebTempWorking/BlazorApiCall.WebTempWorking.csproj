@@ -24,4 +24,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="EndPoints\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorApiCall.Contract\BlazorApiCall.Contract.csproj" />
+  </ItemGroup>
+
 </Project>
