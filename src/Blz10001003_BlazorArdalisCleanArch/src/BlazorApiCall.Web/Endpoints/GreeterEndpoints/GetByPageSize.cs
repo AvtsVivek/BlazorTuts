@@ -9,11 +9,7 @@ public class GetByPageSize : EndpointBaseAsync
     .WithRequest<GetAzureDnsByPageSizeRequest>
     .WithActionResult<GetAzureDnsByPageSizeResponse>
 {
-
-  public GetByPageSize()
-  {
-
-  }
+  public GetByPageSize() {}
 
   [HttpGet(GetAzureDnsByPageSizeRequest.Route)]
   [SwaggerOperation(
@@ -26,24 +22,6 @@ public class GetByPageSize : EndpointBaseAsync
     HandleAsync([FromRoute] GetAzureDnsByPageSizeRequest request,
       CancellationToken cancellationToken)
   {
-    //var azureCredentials = _azureDnsService.GetCredentialsFromFile(_environment.ContentRootPath + "\\wwwroot" + "\\my.azureauth");
-
-    //var dnsClient = await _azureDnsService.LogIntoServicePrincipalAccount(azureCredentials.TenantId, azureCredentials.ClientId,
-    //  azureCredentials.DefaultSubscriptionId);
-
-    //IPage<RecordSet> recoreSets = await _azureDnsService.ListAllByDnsZoneAsync(dnsClient, request.PageSize);
-
-    //List<RecordSetDTO> RecordSets = recoreSets.Select(record => new RecordSetDTO
-    //{
-    //  Id = record.Id,
-    //  Name = record.Name,
-    //  Type = record.Type,
-    //  Etag = record.Etag
-    //}).ToList();
-
-    //var reponse = new GetAzureDnsByPageSizeResponse() { Records = RecordSets };
-
-    //return Ok(reponse);
     return Ok("Hare Krishna");
   }
 }
