@@ -1,27 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using Ardalis.ListStartupServices;
+﻿using Ardalis.ListStartupServices;
 using Autofac;
-
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpLogging;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
-//using OData.Core;
-//using OData.Core.ProjectAggregate;
-//using OData.Infrastructure;
-
-using Autofac.Extensions.DependencyInjection;
 using BlazorApiCall.Core;
 using BlazorApiCall.Infrastructure;
-using BlazorApiCall.Infrastructure.Data;
-
-using Serilog;
-// using BlazorApiCall.Core.Configuration;
+using Microsoft.OpenApi.Models;
 
 namespace BlazorApiCall.Web;
 
@@ -38,28 +19,7 @@ public class Startup
 
   public virtual void ConfigureServices(IServiceCollection services)
   {
-    // services.AddCors();
-    //services.AddCors(options =>
-    //{
-    //  options.AddPolicy("PolicyName", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-    //});
-
-    //services.AddCors(options =>
-    //{
-    //  options.AddPolicy("Name",
-    //  builder =>
-    //  {
-    //    builder.WithOrigins("*").AllowAnyHeader().WithMethods("GET, PATCH, DELETE, PUT, POST, OPTIONS");
-    //  });
-    //});
-
-    services.AddControllers()
-    //  .AddOData(options =>
-    //options
-    //.AddRouteComponents("OData", GetEntityDataModel())
-    //.Select().Filter().OrderBy().SetMaxTop(5)
-    //.Expand())
-      ;
+    services.AddControllers();
 
     services.Configure<CookiePolicyOptions>(options =>
     {
