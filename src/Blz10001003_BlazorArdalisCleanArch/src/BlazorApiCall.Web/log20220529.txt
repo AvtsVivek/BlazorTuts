@@ -1,0 +1,207 @@
+2022-05-29 08:11:38.570 +05:30 [INF] User profile is available. Using 'C:\Users\Mantra\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-05-29 08:11:39.846 +05:30 [INF] Entity Framework Core 6.0.5 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: None
+2022-05-29 08:11:40.167 +05:30 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA journal_mode = 'wal';
+2022-05-29 08:11:40.280 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Projects" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Projects" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Priority" INTEGER NOT NULL
+);
+2022-05-29 08:11:40.280 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "ToDoItems" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_ToDoItems" PRIMARY KEY AUTOINCREMENT,
+    "Title" TEXT NOT NULL,
+    "Description" TEXT NOT NULL,
+    "IsDone" INTEGER NOT NULL,
+    "ProjectId" INTEGER NULL,
+    CONSTRAINT "FK_ToDoItems_Projects_ProjectId" FOREIGN KEY ("ProjectId") REFERENCES "Projects" ("Id")
+);
+2022-05-29 08:11:40.281 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_ToDoItems_ProjectId" ON "ToDoItems" ("ProjectId");
+2022-05-29 08:11:40.313 +05:30 [INF] Entity Framework Core 6.0.5 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: None
+2022-05-29 08:11:40.526 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2022-05-29 08:11:40.581 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+2022-05-29 08:11:40.588 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."Description", "t"."IsDone", "t"."ProjectId", "t"."Title"
+FROM "ToDoItems" AS "t"
+2022-05-29 08:11:40.879 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (Size = 12), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Projects" ("Name", "Priority")
+VALUES (@p0, @p1);
+SELECT "Id"
+FROM "Projects"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-05-29 08:11:40.911 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@p2='?' (Size = 31), @p3='?' (DbType = Boolean), @p4='?' (DbType = Int32), @p5='?' (Size = 18)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p2, @p3, @p4, @p5);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-05-29 08:11:40.912 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 81), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-05-29 08:11:40.913 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 59), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-05-29 08:11:41.073 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-29 08:11:41.073 +05:30 [INF] Hosting environment: Development
+2022-05-29 08:11:41.073 +05:30 [INF] Content root path: D:\Trials\BlazorTuts\src\Blz10001003_BlazorArdalisCleanArch\src\BlazorApiCall.Web\
+2022-05-29 08:11:41.127 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2022-05-29 08:11:41.213 +05:30 [WRN] Failed to determine the https port for redirect.
+2022-05-29 08:11:41.255 +05:30 [INF] Executing endpoint 'BlazorApiCall.Web.Controllers.HomeController.Index (BlazorApiCall.Web)'
+2022-05-29 08:11:41.269 +05:30 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller BlazorApiCall.Web.Controllers.HomeController (BlazorApiCall.Web).
+2022-05-29 08:11:41.375 +05:30 [INF] Executing action method BlazorApiCall.Web.Controllers.HomeController.Index (BlazorApiCall.Web) - Validation state: "Valid"
+2022-05-29 08:11:41.383 +05:30 [INF] Executed action method BlazorApiCall.Web.Controllers.HomeController.Index (BlazorApiCall.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.8275ms.
+2022-05-29 08:11:41.397 +05:30 [INF] Executing ViewResult, running view Index.
+2022-05-29 08:11:41.664 +05:30 [INF] Executed ViewResult - view Index executed in 270.4261ms.
+2022-05-29 08:11:41.668 +05:30 [INF] Executed action BlazorApiCall.Web.Controllers.HomeController.Index (BlazorApiCall.Web) in 398.329ms
+2022-05-29 08:11:41.669 +05:30 [INF] Executed endpoint 'BlazorApiCall.Web.Controllers.HomeController.Index (BlazorApiCall.Web)'
+2022-05-29 08:11:41.751 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - -
+2022-05-29 08:11:41.751 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/BlazorApiCall.Web.styles.css?v=Me6--owx5b2yf3EiYL_nQZnei2hjcT-X5E4bDNN12Nk - -
+2022-05-29 08:11:41.751 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - -
+2022-05-29 08:11:41.776 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 652.8766ms
+2022-05-29 08:11:41.791 +05:30 [INF] Sending file. Request path: '/css/site.css'. Physical path: 'D:\Trials\BlazorTuts\src\Blz10001003_BlazorArdalisCleanArch\src\BlazorApiCall.Web\wwwroot\css\site.css'
+2022-05-29 08:11:41.791 +05:30 [INF] Sending file. Request path: '/BlazorApiCall.Web.styles.css'. Physical path: 'D:\Trials\BlazorTuts\src\Blz10001003_BlazorArdalisCleanArch\src\BlazorApiCall.Web\obj\Debug\net6.0\scopedcss\bundle\BlazorApiCall.Web.styles.css'
+2022-05-29 08:11:41.792 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 200 194 text/css 40.9917ms
+2022-05-29 08:11:41.792 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/BlazorApiCall.Web.styles.css?v=Me6--owx5b2yf3EiYL_nQZnei2hjcT-X5E4bDNN12Nk - - - 200 1134 text/css 40.9913ms
+2022-05-29 08:11:41.798 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2022-05-29 08:11:41.798 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - -
+2022-05-29 08:11:41.802 +05:30 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'D:\Trials\BlazorTuts\src\Blz10001003_BlazorArdalisCleanArch\src\BlazorApiCall.Web\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+2022-05-29 08:11:41.807 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - - - 200 162726 text/css 55.7526ms
+2022-05-29 08:11:41.816 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2022-05-29 08:11:41.818 +05:30 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'D:\Trials\BlazorTuts\src\Blz10001003_BlazorArdalisCleanArch\src\BlazorApiCall.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+2022-05-29 08:11:41.826 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 200 78474 application/javascript 27.3821ms
+2022-05-29 08:11:41.831 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-05-29 08:11:41.832 +05:30 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'D:\Trials\BlazorTuts\src\Blz10001003_BlazorArdalisCleanArch\src\BlazorApiCall.Web\wwwroot\js\site.js'
+2022-05-29 08:11:41.833 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 200 230 application/javascript 16.8408ms
+2022-05-29 08:11:41.836 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 4.9016ms
+2022-05-29 08:11:41.836 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2022-05-29 08:11:41.848 +05:30 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'D:\Trials\BlazorTuts\src\Blz10001003_BlazorArdalisCleanArch\src\BlazorApiCall.Web\wwwroot\lib\jquery\dist\jquery.min.js'
+2022-05-29 08:11:41.851 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - - - 200 89478 application/javascript 52.9788ms
+2022-05-29 08:11:41.901 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 64.2827ms
+2022-05-29 08:32:41.844 +05:30 [INF] User profile is available. Using 'C:\Users\Mantra\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-05-29 08:32:42.666 +05:30 [INF] Entity Framework Core 6.0.5 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: None
+2022-05-29 08:32:42.773 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2022-05-29 08:32:42.821 +05:30 [INF] Entity Framework Core 6.0.5 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: None
+2022-05-29 08:32:43.010 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2022-05-29 08:32:43.142 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-29 08:32:43.142 +05:30 [INF] Hosting environment: Development
+2022-05-29 08:32:43.142 +05:30 [INF] Content root path: D:\Trials\BlazorTuts\src\Blz10001003_BlazorArdalisCleanArch\src\BlazorApiCall.Web\
+2022-05-29 08:32:43.164 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2022-05-29 08:32:43.229 +05:30 [WRN] Failed to determine the https port for redirect.
+2022-05-29 08:32:43.266 +05:30 [INF] Executing endpoint 'BlazorApiCall.Web.Controllers.HomeController.Index (BlazorApiCall.Web)'
+2022-05-29 08:32:43.277 +05:30 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller BlazorApiCall.Web.Controllers.HomeController (BlazorApiCall.Web).
+2022-05-29 08:32:43.340 +05:30 [INF] Executing action method BlazorApiCall.Web.Controllers.HomeController.Index (BlazorApiCall.Web) - Validation state: "Valid"
+2022-05-29 08:32:43.346 +05:30 [INF] Executed action method BlazorApiCall.Web.Controllers.HomeController.Index (BlazorApiCall.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.7957ms.
+2022-05-29 08:32:43.355 +05:30 [INF] Executing ViewResult, running view Index.
+2022-05-29 08:32:43.546 +05:30 [INF] Executed ViewResult - view Index executed in 191.9748ms.
+2022-05-29 08:32:43.552 +05:30 [INF] Executed action BlazorApiCall.Web.Controllers.HomeController.Index (BlazorApiCall.Web) in 274.1875ms
+2022-05-29 08:32:43.552 +05:30 [INF] Executed endpoint 'BlazorApiCall.Web.Controllers.HomeController.Index (BlazorApiCall.Web)'
+2022-05-29 08:32:43.603 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - -
+2022-05-29 08:32:43.603 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/BlazorApiCall.Web.styles.css?v=Me6--owx5b2yf3EiYL_nQZnei2hjcT-X5E4bDNN12Nk - -
+2022-05-29 08:32:43.603 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - -
+2022-05-29 08:32:43.603 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - -
+2022-05-29 08:32:43.609 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-05-29 08:32:43.613 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2022-05-29 08:32:43.623 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 11.4467ms
+2022-05-29 08:32:43.628 +05:30 [INF] The file /css/site.css was not modified
+2022-05-29 08:32:43.628 +05:30 [INF] The file /BlazorApiCall.Web.styles.css was not modified
+2022-05-29 08:32:43.628 +05:30 [INF] The file /lib/bootstrap/dist/css/bootstrap.min.css was not modified
+2022-05-29 08:32:43.628 +05:30 [INF] The file /lib/bootstrap/dist/js/bootstrap.bundle.min.js was not modified
+2022-05-29 08:32:43.628 +05:30 [INF] The file /lib/jquery/dist/jquery.min.js was not modified
+2022-05-29 08:32:43.636 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - - - 304 - application/javascript 34.5793ms
+2022-05-29 08:32:43.636 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/BlazorApiCall.Web.styles.css?v=Me6--owx5b2yf3EiYL_nQZnei2hjcT-X5E4bDNN12Nk - - - 304 - text/css 33.1135ms
+2022-05-29 08:32:43.636 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 304 - application/javascript 23.3105ms
+2022-05-29 08:32:43.636 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - - - 304 - text/css 34.6044ms
+2022-05-29 08:32:43.636 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 304 - text/css 33.3215ms
+2022-05-29 08:32:43.638 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2022-05-29 08:32:43.638 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2022-05-29 08:32:43.638 +05:30 [INF] The file /js/site.js was not modified
+2022-05-29 08:32:43.638 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 476.9886ms
+2022-05-29 08:32:43.639 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 304 - application/javascript 0.6291ms
+2022-05-29 08:32:43.679 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 41.1751ms
+2022-05-29 08:32:46.330 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2022-05-29 08:32:46.397 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 200 - text/html;charset=utf-8 66.6866ms
+2022-05-29 08:32:46.413 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-05-29 08:32:46.415 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 1.7309ms
+2022-05-29 08:32:46.415 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2022-05-29 08:32:46.438 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 23.5415ms
+2022-05-29 08:32:46.504 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - -
+2022-05-29 08:32:46.623 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 118.9613ms
+2022-05-29 08:32:51.891 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/info - -
+2022-05-29 08:32:51.891 +05:30 [INF] Executing endpoint 'BlazorApiCall.Web.Api.MetaController.Info (BlazorApiCall.Web)'
+2022-05-29 08:32:51.894 +05:30 [INF] Route matched with {action = "Info", controller = "Meta", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.String] Info() on controller BlazorApiCall.Web.Api.MetaController (BlazorApiCall.Web).
+2022-05-29 08:32:51.929 +05:30 [INF] Executing action method BlazorApiCall.Web.Api.MetaController.Info (BlazorApiCall.Web) - Validation state: "Valid"
+2022-05-29 08:32:51.966 +05:30 [INF] Executed action method BlazorApiCall.Web.Api.MetaController.Info (BlazorApiCall.Web), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 36.6572ms.
+2022-05-29 08:32:51.973 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2022-05-29 08:32:51.975 +05:30 [INF] Executed action BlazorApiCall.Web.Api.MetaController.Info (BlazorApiCall.Web) in 80.5382ms
+2022-05-29 08:32:51.975 +05:30 [INF] Executed endpoint 'BlazorApiCall.Web.Api.MetaController.Info (BlazorApiCall.Web)'
+2022-05-29 08:32:51.975 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/info - - - 200 - text/plain;+charset=utf-8 84.1583ms
+2022-05-29 08:48:23.562 +05:30 [INF] User profile is available. Using 'C:\Users\Mantra\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-05-29 08:48:24.726 +05:30 [INF] Entity Framework Core 6.0.5 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: None
+2022-05-29 08:48:25.065 +05:30 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2022-05-29 08:48:25.113 +05:30 [INF] Entity Framework Core 6.0.5 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.5' with options: None
+2022-05-29 08:48:25.292 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2022-05-29 08:48:25.396 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-29 08:48:25.397 +05:30 [INF] Hosting environment: Development
+2022-05-29 08:48:25.404 +05:30 [INF] Content root path: D:\Trials\BlazorTuts\src\Blz10001003_BlazorArdalisCleanArch\src\BlazorApiCall.Web\
+2022-05-29 08:48:25.424 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2022-05-29 08:48:25.478 +05:30 [WRN] Failed to determine the https port for redirect.
+2022-05-29 08:48:25.511 +05:30 [INF] Executing endpoint 'BlazorApiCall.Web.Controllers.HomeController.Index (BlazorApiCall.Web)'
+2022-05-29 08:48:25.518 +05:30 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller BlazorApiCall.Web.Controllers.HomeController (BlazorApiCall.Web).
+2022-05-29 08:48:25.577 +05:30 [INF] Executing action method BlazorApiCall.Web.Controllers.HomeController.Index (BlazorApiCall.Web) - Validation state: "Valid"
+2022-05-29 08:48:25.583 +05:30 [INF] Executed action method BlazorApiCall.Web.Controllers.HomeController.Index (BlazorApiCall.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 1.0428ms.
+2022-05-29 08:48:25.589 +05:30 [INF] Executing ViewResult, running view Index.
+2022-05-29 08:48:25.757 +05:30 [INF] Executed ViewResult - view Index executed in 168.404ms.
+2022-05-29 08:48:25.761 +05:30 [INF] Executed action BlazorApiCall.Web.Controllers.HomeController.Index (BlazorApiCall.Web) in 242.4998ms
+2022-05-29 08:48:25.761 +05:30 [INF] Executed endpoint 'BlazorApiCall.Web.Controllers.HomeController.Index (BlazorApiCall.Web)'
+2022-05-29 08:48:25.808 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2022-05-29 08:48:25.814 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - -
+2022-05-29 08:48:25.814 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - -
+2022-05-29 08:48:25.814 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - -
+2022-05-29 08:48:25.814 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/BlazorApiCall.Web.styles.css?v=Me6--owx5b2yf3EiYL_nQZnei2hjcT-X5E4bDNN12Nk - -
+2022-05-29 08:48:25.814 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-05-29 08:48:25.822 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 6.1301ms
+2022-05-29 08:48:25.823 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 402.5183ms
+2022-05-29 08:48:25.837 +05:30 [INF] The file /css/site.css was not modified
+2022-05-29 08:48:25.837 +05:30 [INF] The file /lib/bootstrap/dist/js/bootstrap.bundle.min.js was not modified
+2022-05-29 08:48:25.837 +05:30 [INF] The file /lib/jquery/dist/jquery.min.js was not modified
+2022-05-29 08:48:25.837 +05:30 [INF] The file /lib/bootstrap/dist/css/bootstrap.min.css was not modified
+2022-05-29 08:48:25.838 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2022-05-29 08:48:25.838 +05:30 [INF] The file /js/site.js was not modified
+2022-05-29 08:48:25.838 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 304 - application/javascript 29.9417ms
+2022-05-29 08:48:25.838 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 304 - text/css 24.3676ms
+2022-05-29 08:48:25.838 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 304 - application/javascript 0.5373ms
+2022-05-29 08:48:25.838 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - - - 304 - text/css 24.2222ms
+2022-05-29 08:48:25.838 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - - - 304 - application/javascript 24.2719ms
+2022-05-29 08:48:25.844 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2022-05-29 08:48:25.847 +05:30 [INF] Sending file. Request path: '/BlazorApiCall.Web.styles.css'. Physical path: 'D:\Trials\BlazorTuts\src\Blz10001003_BlazorArdalisCleanArch\src\BlazorApiCall.Web\obj\Debug\net6.0\scopedcss\bundle\BlazorApiCall.Web.styles.css'
+2022-05-29 08:48:25.847 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/BlazorApiCall.Web.styles.css?v=Me6--owx5b2yf3EiYL_nQZnei2hjcT-X5E4bDNN12Nk - - - 200 1134 text/css 32.8722ms
+2022-05-29 08:48:25.881 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 36.8513ms
+2022-05-29 08:48:35.698 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2022-05-29 08:48:35.762 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 200 - text/html;charset=utf-8 64.2202ms
+2022-05-29 08:48:35.771 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-05-29 08:48:35.774 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 3.0935ms
+2022-05-29 08:48:35.777 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2022-05-29 08:48:35.802 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 24.9922ms
+2022-05-29 08:48:35.866 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - -
+2022-05-29 08:48:35.973 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 107.3753ms
