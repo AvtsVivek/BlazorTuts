@@ -27,7 +27,12 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\BlazorApiCall.Contract\BlazorApiCall.Contract.csproj" />
     <ProjectReference Include="..\BlazorApiCall.Infrastructure\BlazorApiCall.Infrastructure.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Endpoints\GreeterEndpoints\" />
   </ItemGroup>
   
 </Project>
