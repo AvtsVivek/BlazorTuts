@@ -16,7 +16,7 @@ public class Program
       //SeedSampleData.SetAppConstant(services);
       try
       {
-        SeedData.Initialize(services);
+        // SeedData.Initialize(services);
         //SeedSampleData.Initialize(services);
         //SeedDataExtensions.Initialize(services);
       }

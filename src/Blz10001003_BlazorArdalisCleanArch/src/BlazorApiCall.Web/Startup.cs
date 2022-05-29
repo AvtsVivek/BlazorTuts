@@ -27,8 +27,8 @@ public class Startup
       options.MinimumSameSitePolicy = SameSiteMode.None;
     });
 
-    var connectionString = Configuration.GetConnectionString("SqliteConnection");  //Configuration.GetConnectionString("DefaultConnection");
-    services.AddDbContext(connectionString);
+    // var connectionString = Configuration.GetConnectionString("SqliteConnection");  //Configuration.GetConnectionString("DefaultConnection");
+    // services.AddDbContext(connectionString);
 
     services.AddControllersWithViews();
 
