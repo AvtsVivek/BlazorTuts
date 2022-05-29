@@ -9,19 +9,10 @@ public class GetByPageSize : EndpointBaseAsync
     .WithRequest<GetAzureDnsByPageSizeRequest>
     .WithActionResult<GetAzureDnsByPageSizeResponse>
 {
-  //private readonly IRepository<Project> _repository;
-//  private readonly IAzureDnsService _azureDnsService;
-  //private readonly IHostEnvironment _environment;
 
-  public GetByPageSize(
-    // IRepository<Project> repository
-    // , IAzureDnsService azureDnsService, 
-    //, IHostEnvironment environment
-    )
+  public GetByPageSize()
   {
-    //_repository = repository;
-    // _azureDnsService = azureDnsService;
-    //_environment = environment;
+
   }
 
   [HttpGet(GetAzureDnsByPageSizeRequest.Route)]
