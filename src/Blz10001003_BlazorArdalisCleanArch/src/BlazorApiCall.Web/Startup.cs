@@ -30,11 +30,8 @@ public class Startup
     var connectionString = Configuration.GetConnectionString("SqliteConnection");  //Configuration.GetConnectionString("DefaultConnection");
     services.AddDbContext(connectionString);
 
-    // services.Configure<AzureDNSServiceSettings>(Configuration.GetSection(nameof(AzureDNSServiceSettings)));
+    services.AddControllersWithViews();
 
-    services.AddControllersWithViews()
-      //.AddNewtonsoftJson()
-      ;
     services.AddRazorPages();
 
     services.AddSwaggerGen(c =>
