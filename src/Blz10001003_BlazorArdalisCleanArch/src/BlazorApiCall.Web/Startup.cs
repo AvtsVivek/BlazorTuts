@@ -87,26 +87,6 @@ public class Startup
       endpoints.MapDefaultControllerRoute();
       endpoints.MapRazorPages();
     });
-
-    //app.UseCors(x => x
-    //  .AllowAnyMethod()
-    //  .AllowAnyHeader()
-    //  .SetIsOriginAllowed(origin => true) // allow any origin  
-    //  .AllowCredentials());               // allow credentials 
   }
-
-  //private IEdmModel GetEntityDataModel()
-  //{
-  //  var builder = new ODataConventionModelBuilder();
-
-  //  builder.Namespace = "Projects";
-
-  //  builder.ContainerName = "ProjectsContainer";
-
-  //  builder.EntitySet<Project>("Projects");
-
-  //  return builder.GetEdmModel();
-  //}
-
 }
 
