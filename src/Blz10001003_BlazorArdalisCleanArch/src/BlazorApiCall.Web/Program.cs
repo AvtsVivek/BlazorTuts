@@ -2,55 +2,66 @@
 using Autofac.Extensions.DependencyInjection;
 using Serilog;
 
-namespace BlazorApiCall.Web;
-
-public class Program
+namespace BlazorApiCall.Web
 {
-  public static void Main(string[] args)
+  public class Program
   {
-    var host = CreateHostBuilder<Startup>(args).Build();
-
-    using (var scope = host.Services.CreateScope())
+    public static void Main(string[] args)
     {
-      var services = scope.ServiceProvider;
-      //SeedSampleData.SetAppConstant(services);
-      try
+      // CreateHostBuilder<Startup>(args).Build().Run();
+      var host = CreateHostBuilder<Startup>(args).Build();
+
+      using (var scope = host.Services.CreateScope())
       {
-        // SeedData.Initialize(services);
-        //SeedSampleData.Initialize(services);
-        //SeedDataExtensions.Initialize(services);
+        var services = scope.ServiceProvider;
+        //SeedSampleData.SetAppConstant(services);
+        try
+        {
+          // SeedData.Initialize(services);
+          // SeedSampleData.Initialize(services);
+          // SeedDataExtensions.Initialize(services);
+        }
+        catch (Exception ex)
+        {
+          Debugger.Break();
+          var logger = services.GetRequiredService<ILogger<Program>>();
+          logger.LogError(ex, "An error occurred seeding the DB.");
+        }
       }
-      catch (Exception ex)
-      {
-        Debugger.Break();
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An error occurred seeding the DB.");
-      }
+
+      host.Run();
     }
 
-    host.Run();
-  }
+    //public static IHostBuilder CreateHostBuilder<TStartup>(string[] args) where TStartup : class
+    //{
+    //  return Host.CreateDefaultBuilder(args)
+    //      .ConfigureWebHostDefaults(webBuilder =>
+    //      {
+    //        webBuilder.UseStartup<TStartup>();
+    //      });
+    //}
 
-  public static IHostBuilder CreateHostBuilder<TStartup>(string[] args,
-  AutofacServiceProviderFactory? autofacServiceProviderFactory = null) where TStartup : class
-  {
-    var builder = WebApplication.CreateBuilder(args);
-    if (autofacServiceProviderFactory == null)
-      autofacServiceProviderFactory = new AutofacServiceProviderFactory();
-    return Host.CreateDefaultBuilder(args)
-    .UseServiceProviderFactory(autofacServiceProviderFactory)
-    // https://jkdev.me/asp-net-core-serilog/
-    .UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration))
-    .ConfigureWebHostDefaults(webBuilder =>
+    public static IHostBuilder CreateHostBuilder<TStartup>(string[] args,
+      AutofacServiceProviderFactory? autofacServiceProviderFactory = null) where TStartup : class
     {
-      webBuilder
-            .UseStartup<TStartup>()
-            .ConfigureLogging(logging =>
-            {
-              logging.ClearProviders();
-              logging.AddConsole();
+      var builder = WebApplication.CreateBuilder(args);
+      if (autofacServiceProviderFactory == null)
+        autofacServiceProviderFactory = new AutofacServiceProviderFactory();
+      return Host.CreateDefaultBuilder(args)
+      .UseServiceProviderFactory(autofacServiceProviderFactory)
+      // https://jkdev.me/asp-net-core-serilog/
+      .UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration))
+      .ConfigureWebHostDefaults(webBuilder =>
+      {
+        webBuilder
+              .UseStartup<TStartup>()
+              .ConfigureLogging(logging =>
+              {
+                logging.ClearProviders();
+                logging.AddConsole();
               // logging.AddAzureWebAppDiagnostics(); add this if deploying to Azure
-            });
-    });
+              });
+      });
+    }
   }
 }
