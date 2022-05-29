@@ -1,7 +1,5 @@
 ﻿using Ardalis.ApiEndpoints;
 using BlazorApiCall.Contract;
-using BlazorApiCall.Core.ProjectAggregate;
-using BlazorApiCall.SharedKernel.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -11,17 +9,19 @@ public class GetByPageSize : EndpointBaseAsync
     .WithRequest<GetAzureDnsByPageSizeRequest>
     .WithActionResult<GetAzureDnsByPageSizeResponse>
 {
-  private readonly IRepository<Project> _repository;
+  //private readonly IRepository<Project> _repository;
 //  private readonly IAzureDnsService _azureDnsService;
-  private readonly IHostEnvironment _environment;
+  //private readonly IHostEnvironment _environment;
 
-  public GetByPageSize(IRepository<Project> repository
+  public GetByPageSize(
+    // IRepository<Project> repository
     // , IAzureDnsService azureDnsService, 
-    , IHostEnvironment environment)
+    //, IHostEnvironment environment
+    )
   {
-    _repository = repository;
+    //_repository = repository;
     // _azureDnsService = azureDnsService;
-    _environment = environment;
+    //_environment = environment;
   }
 
   [HttpGet(GetAzureDnsByPageSizeRequest.Route)]

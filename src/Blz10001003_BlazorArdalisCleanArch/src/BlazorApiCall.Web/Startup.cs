@@ -1,7 +1,5 @@
 ﻿using Ardalis.ListStartupServices;
 using Autofac;
-using BlazorApiCall.Core;
-using BlazorApiCall.Infrastructure;
 using Microsoft.OpenApi.Models;
 
 namespace BlazorApiCall.Web;
@@ -53,8 +51,8 @@ public class Startup
 
   public virtual void ConfigureContainer(ContainerBuilder builder)
   {
-    builder.RegisterModule(new DefaultCoreModule());
-    builder.RegisterModule(new DefaultInfrastructureModule(_env.EnvironmentName == "Development"));
+    //builder.RegisterModule(new DefaultCoreModule());
+    //builder.RegisterModule(new DefaultInfrastructureModule(_env.EnvironmentName == "Development"));
   }
 
   public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
