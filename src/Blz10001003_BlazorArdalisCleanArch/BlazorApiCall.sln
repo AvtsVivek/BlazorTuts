@@ -17,7 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		CleanArchitecture.nuspec = CleanArchitecture.nuspec
-		Directory.Packages.props = Directory.Packages.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApiCall.FunctionalTests", "tests\BlazorApiCall.FunctionalTests\BlazorApiCall.FunctionalTests.csproj", "{7D84EFEE-A7D9-44AD-A0A3-38EC7882D94C}"
@@ -33,6 +32,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApiCall.SharedKernel", "src\BlazorApiCall.SharedKernel\BlazorApiCall.SharedKernel.csproj", "{744AD1DC-E83E-4ACE-BE57-395395D6E357}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApiCall.UnitTests", "tests\BlazorApiCall.UnitTests\BlazorApiCall.UnitTests.csproj", "{1DC7F5A0-DDF7-4975-84EB-05F4FC1B6AB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApiCall.BlazorWasm", "src\BlazorApiCall.BlazorWasm\BlazorApiCall.BlazorWasm.csproj", "{A576EEF3-C486-4271-9B65-6CA86FC5A85E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -128,6 +129,18 @@ Global
 		{1DC7F5A0-DDF7-4975-84EB-05F4FC1B6AB5}.Release|x64.Build.0 = Release|Any CPU
 		{1DC7F5A0-DDF7-4975-84EB-05F4FC1B6AB5}.Release|x86.ActiveCfg = Release|Any CPU
 		{1DC7F5A0-DDF7-4975-84EB-05F4FC1B6AB5}.Release|x86.Build.0 = Release|Any CPU
+		{A576EEF3-C486-4271-9B65-6CA86FC5A85E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A576EEF3-C486-4271-9B65-6CA86FC5A85E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A576EEF3-C486-4271-9B65-6CA86FC5A85E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A576EEF3-C486-4271-9B65-6CA86FC5A85E}.Debug|x64.Build.0 = Debug|Any CPU
+		{A576EEF3-C486-4271-9B65-6CA86FC5A85E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A576EEF3-C486-4271-9B65-6CA86FC5A85E}.Debug|x86.Build.0 = Debug|Any CPU
+		{A576EEF3-C486-4271-9B65-6CA86FC5A85E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A576EEF3-C486-4271-9B65-6CA86FC5A85E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A576EEF3-C486-4271-9B65-6CA86FC5A85E}.Release|x64.ActiveCfg = Release|Any CPU
+		{A576EEF3-C486-4271-9B65-6CA86FC5A85E}.Release|x64.Build.0 = Release|Any CPU
+		{A576EEF3-C486-4271-9B65-6CA86FC5A85E}.Release|x86.ActiveCfg = Release|Any CPU
+		{A576EEF3-C486-4271-9B65-6CA86FC5A85E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,6 +153,7 @@ Global
 		{0776DC14-9000-47A4-A3F4-ECBCF8CEBC17} = {B31B4797-1D9F-4288-808C-BE9A31A98C7D}
 		{744AD1DC-E83E-4ACE-BE57-395395D6E357} = {106AE906-5075-410A-B941-912F811848EE}
 		{1DC7F5A0-DDF7-4975-84EB-05F4FC1B6AB5} = {B31B4797-1D9F-4288-808C-BE9A31A98C7D}
+		{A576EEF3-C486-4271-9B65-6CA86FC5A85E} = {106AE906-5075-410A-B941-912F811848EE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B0F19343-8185-4A9F-9165-0EA8544BC925}
