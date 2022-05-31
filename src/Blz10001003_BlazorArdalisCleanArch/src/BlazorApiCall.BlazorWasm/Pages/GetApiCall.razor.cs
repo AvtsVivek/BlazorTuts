@@ -46,6 +46,7 @@ public partial class GetApiCall
       };
       var response = await Http.SendAsync(requestMessage);
       var finalMessage = await response.Content.ReadAsStringAsync();
+      Debugger.Break();
       // var result = await Http.GetAndDeserialize<GetAzureDnsByPageSizeResponse>(temp);
       // var response = await Http.GetFromJsonAsync<GetAzureDnsByPageSizeResponse>("http://localhost:57678/AzureDns/3");
       // recordSets = response!.Records;
