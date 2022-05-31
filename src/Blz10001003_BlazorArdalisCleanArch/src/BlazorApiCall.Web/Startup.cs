@@ -1,95 +1,114 @@
 ﻿using Ardalis.ListStartupServices;
 using Autofac;
+using BlazorApiCall.Core;
+using BlazorApiCall.Infrastructure;
 using Microsoft.OpenApi.Models;
 
-namespace BlazorApiCall.Web
+namespace BlazorApiCall.Web;
+
+public class Startup
 {
-  public class Startup
+  private readonly IWebHostEnvironment _env;
+
+  public Startup(IConfiguration config, IWebHostEnvironment env)
   {
-    private readonly IWebHostEnvironment _env;
+    Configuration = config;
+    _env = env;
+  }
+  public IConfiguration Configuration { get; }
 
-    public Startup(IConfiguration config, IWebHostEnvironment env)
+  public virtual void ConfigureServices(IServiceCollection services)
+  {
+    services.AddControllers();
+
+    services.Configure<CookiePolicyOptions>(options =>
     {
-      Configuration = config;
-      _env = env;
-    }
+      options.CheckConsentNeeded = context => true;
+      options.MinimumSameSitePolicy = SameSiteMode.None;
+    });
 
-    public IConfiguration Configuration { get; }
+    var connectionString = Configuration.GetConnectionString("SqliteConnection");  //Configuration.GetConnectionString("DefaultConnection");
+    services.AddDbContext(connectionString);
 
-    public virtual void ConfigureServices(IServiceCollection services)
+    // services.Configure<AzureDNSServiceSettings>(Configuration.GetSection(nameof(AzureDNSServiceSettings)));
+
+    services.AddControllersWithViews()
+      //.AddNewtonsoftJson()
+      ;
+    services.AddRazorPages();
+
+    services.AddSwaggerGen(c =>
     {
-      services.AddControllers();
+      c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+      c.EnableAnnotations();
+    });
 
-      services.Configure<CookiePolicyOptions>(options =>
-      {
-        options.CheckConsentNeeded = context => true;
-        options.MinimumSameSitePolicy = SameSiteMode.None;
-      });
-
-      services.AddControllersWithViews();
-
-      services.AddRazorPages();
-
-      services.AddSwaggerGen(c =>
-      {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-        c.EnableAnnotations();
-      });
-
-      // add list services for diagnostic purposes - see https://github.com/ardalis/AspNetCoreStartupServices
-      services.Configure<ServiceConfig>(config =>
-      {
-        config.Services = new List<ServiceDescriptor>(services);
-
-        // optional - default path to view services is /listallservices - recommended to choose your own path
-        config.Path = "/listservices";
-      });
-
-    }
-
-    public virtual void ConfigureContainer(ContainerBuilder builder)
+    // add list services for diagnostic purposes - see https://github.com/ardalis/AspNetCoreStartupServices
+    services.Configure<ServiceConfig>(config =>
     {
-      //builder.RegisterModule(new DefaultCoreModule());
-      //builder.RegisterModule(new DefaultInfrastructureModule(_env.EnvironmentName == "Development"));
-    }
+      config.Services = new List<ServiceDescriptor>(services);
 
-    public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-      app.UseCors(cors => cors
-          .AllowAnyMethod()
-          .AllowAnyHeader()
-          .SetIsOriginAllowed(origin => true)
-          .AllowCredentials()
-      );
+      // optional - default path to view services is /listallservices - recommended to choose your own path
+      config.Path = "/listservices";
+    });
 
-      if (_env.IsDevelopment())
-      {
-        app.UseDeveloperExceptionPage();
-        app.UseShowAllServicesMiddleware();
-      }
-      else
-      {
-        app.UseExceptionHandler("/Home/Error");
-        app.UseHsts();
-      }
-      app.UseRouting();
-      app.UseAuthorization();
-      app.UseHttpsRedirection();
-      app.UseStaticFiles();
-      app.UseCookiePolicy();
-
-      // Enable middleware to serve generated Swagger as a JSON endpoint.
-      app.UseSwagger();
-
-      // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
-      app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"));
-
-      app.UseEndpoints(endpoints =>
-      {
-        endpoints.MapDefaultControllerRoute();
-        endpoints.MapRazorPages();
-      });
-    }
   }
 
+  public virtual void ConfigureContainer(ContainerBuilder builder)
+  {
+    builder.RegisterModule(new DefaultCoreModule());
+    builder.RegisterModule(new DefaultInfrastructureModule(_env.EnvironmentName == "Development"));
+  }
+
+  public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+  {
+    app.UseCors(x => x
+      .AllowAnyMethod()
+      .AllowAnyHeader()
+      .SetIsOriginAllowed(origin => true) // allow any origin  
+      .AllowCredentials());               // allow credentials 
+
+    if (_env.IsDevelopment())
+    {
+      app.UseDeveloperExceptionPage();
+      app.UseShowAllServicesMiddleware();
+    }
+    else
+    {
+      app.UseExceptionHandler("/Home/Error");
+      app.UseHsts();
+    }
+    app.UseRouting();
+    app.UseAuthorization();
+    app.UseHttpsRedirection();
+    app.UseStaticFiles();
+    app.UseCookiePolicy();
+
+    // Enable middleware to serve generated Swagger as a JSON endpoint.
+    app.UseSwagger();
+
+    // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"));
+
+    app.UseEndpoints(endpoints =>
+    {
+      endpoints.MapDefaultControllerRoute();
+      endpoints.MapRazorPages();
+    });
+  }
+
+  //private IEdmModel GetEntityDataModel()
+  //{
+  //  var builder = new ODataConventionModelBuilder();
+
+  //  builder.Namespace = "Projects";
+
+  //  builder.ContainerName = "ProjectsContainer";
+
+  //  builder.EntitySet<Project>("Projects");
+
+  //  return builder.GetEdmModel();
+  //}
+
 }
+

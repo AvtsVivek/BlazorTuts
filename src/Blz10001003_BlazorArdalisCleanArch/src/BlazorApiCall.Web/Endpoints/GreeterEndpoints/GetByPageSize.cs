@@ -1,5 +1,7 @@
 ﻿using Ardalis.ApiEndpoints;
 using BlazorApiCall.Contract;
+using BlazorApiCall.Core.ProjectAggregate;
+using BlazorApiCall.SharedKernel.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -9,7 +11,18 @@ public class GetByPageSize : EndpointBaseAsync
     .WithRequest<GetAzureDnsByPageSizeRequest>
     .WithActionResult<GetAzureDnsByPageSizeResponse>
 {
-  public GetByPageSize() {}
+  private readonly IRepository<Project> _repository;
+//  private readonly IAzureDnsService _azureDnsService;
+  private readonly IHostEnvironment _environment;
+
+  public GetByPageSize(IRepository<Project> repository
+    // , IAzureDnsService azureDnsService, 
+    , IHostEnvironment environment)
+  {
+    _repository = repository;
+    // _azureDnsService = azureDnsService;
+    _environment = environment;
+  }
 
   [HttpGet(GetAzureDnsByPageSizeRequest.Route)]
   [SwaggerOperation(
@@ -22,6 +35,24 @@ public class GetByPageSize : EndpointBaseAsync
     HandleAsync([FromRoute] GetAzureDnsByPageSizeRequest request,
       CancellationToken cancellationToken)
   {
-    return Ok("Hare Krishna");
+    //var azureCredentials = _azureDnsService.GetCredentialsFromFile(_environment.ContentRootPath + "\\wwwroot" + "\\my.azureauth");
+
+    //var dnsClient = await _azureDnsService.LogIntoServicePrincipalAccount(azureCredentials.TenantId, azureCredentials.ClientId,
+    //  azureCredentials.DefaultSubscriptionId);
+
+    //IPage<RecordSet> recoreSets = await _azureDnsService.ListAllByDnsZoneAsync(dnsClient, request.PageSize);
+
+    //List<RecordSetDTO> RecordSets = recoreSets.Select(record => new RecordSetDTO
+    //{
+    //  Id = record.Id,
+    //  Name = record.Name,
+    //  Type = record.Type,
+    //  Etag = record.Etag
+    //}).ToList();
+
+    //var reponse = new GetAzureDnsByPageSizeResponse() { Records = RecordSets };
+
+    //return Ok(reponse);
+    return Ok("HEre we go");
   }
 }

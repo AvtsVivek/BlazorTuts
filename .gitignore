@@ -357,4 +357,3 @@ MigrationBackup/
 *.sqlite-shm
 *.sqlite-wal
 *.dgml
-
